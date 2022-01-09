@@ -3,11 +3,13 @@ using UnityEngine;
 
 public class MagicCube {
 
+    public int rndOffset;
+
     public int[][][] getMagicCube()
     {
+        rndOffset = UnityEngine.Random.Range(1, 10);
         int[][][] tempCube;
         var n = 3;
-        var rndOffset = UnityEngine.Random.Range(0, 10);
         tempCube = new int[n][][];
         for (int i = 0; i < n; i++)
         {
