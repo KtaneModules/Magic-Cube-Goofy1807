@@ -19,8 +19,10 @@ public class MagicCubeScript : MonoBehaviour
     public TextMesh[] InnerValues;
     public TextMesh[] OuterValues;
     public KMSelectable ViewToggle;
-    public Texture[] Images;
-    public MeshRenderer ToggleImage;
+    public Texture[] Layers;
+    public MeshRenderer Layer;
+
+    private int curLayer = 0;
 
     private int[][][] magicCube;
 
@@ -42,6 +44,7 @@ public class MagicCubeScript : MonoBehaviour
             RightArrows[i].OnInteract += RightArrowPressed(i);
         }
         ViewToggle.OnInteract += ViewTogglePressed();
+        UpdateModule();
     }
 
     private KMSelectable.OnInteractHandler ViewTogglePressed()
@@ -50,9 +53,36 @@ public class MagicCubeScript : MonoBehaviour
         {
             if (moduleSolved)
                 return false;
-
+            curLayer = (curLayer + 1) % 9;
+            UpdateModule();
             return false;
         };
+    }
+
+    private void UpdateModule()
+    {
+        Layer.material.mainTexture = Layers[curLayer];
+        if (curLayer < 3)
+            for (int i = 0; i < InnerValues.Length; i++)
+                InnerValues[i].text = magicCube[curLayer][i / 3][i % 3].ToString();
+        else if (curLayer < 6)
+            for (int i = 0; i < InnerValues.Length; i++)
+                InnerValues[i].text = magicCube[2 - (i / 3)][curLayer % 3][i % 3].ToString();
+        else
+            for (int i = 0; i < InnerValues.Length; i++)
+                InnerValues[i].text = magicCube[i % 3][i / 3][curLayer % 3].ToString();
+        OuterValues[0].text = InnerValues[6].text;
+        OuterValues[1].text = InnerValues[7].text;
+        OuterValues[2].text = InnerValues[8].text;
+        OuterValues[3].text = InnerValues[0].text;
+        OuterValues[4].text = InnerValues[1].text;
+        OuterValues[5].text = InnerValues[2].text;
+        OuterValues[6].text = InnerValues[2].text;
+        OuterValues[7].text = InnerValues[5].text;
+        OuterValues[8].text = InnerValues[8].text;
+        OuterValues[9].text = InnerValues[0].text;
+        OuterValues[10].text = InnerValues[3].text;
+        OuterValues[11].text = InnerValues[6].text;
     }
 
     private KMSelectable.OnInteractHandler UpArrowPressed(int btn)
@@ -117,7 +147,7 @@ public class MagicCubeScript : MonoBehaviour
         int last = (int) Math.Pow(n, 3);
         for (int i = 0; i < last; i++)
         {
-            tempCube[l][r][c] = i + rndOffset;
+            tempCube[l][r][c] = i + 1;
             l--;
             l = normalize(n, l);
             c--;
