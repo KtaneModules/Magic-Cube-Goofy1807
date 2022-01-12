@@ -51,7 +51,8 @@ public class MagicCubeScript : MonoBehaviour
         }
         ViewToggle.OnInteract += ViewTogglePressed();
         UpdateModule(false, false);
-        StartCoroutine(ShuffleCube(2));
+        Log("Magic Cube: {0}{1}", Environment.NewLine, magicCube.Select(layer => layer.Select(face => face.Select(cell => cell.ToString()).Join(", ")).Join(Environment.NewLine)).Join(Environment.NewLine));
+        StartCoroutine(ShuffleCube(25));
     }
 
     private KMSelectable.OnInteractHandler ViewTogglePressed()
@@ -144,7 +145,7 @@ public class MagicCubeScript : MonoBehaviour
     {
         for (int i = 0; i < amount; i++)
         {
-            for (int j = 0; j < 4; j++)
+            for (int j = 0; j < 6; j++)
                 yield return StartCoroutine(MoveValues(Random.Range(0, 3), Random.Range(0, 4), true));
             for (int k = 0; k < Random.Range(1, 4); k++)
             {
