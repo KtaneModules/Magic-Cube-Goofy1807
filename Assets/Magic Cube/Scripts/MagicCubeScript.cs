@@ -9,7 +9,6 @@ using Random = UnityEngine.Random;
 
 public class MagicCubeScript : MonoBehaviour
 {
-
     public KMBombInfo Bomb;
     public KMBombModule Module;
     public KMAudio Audio;
@@ -41,7 +40,6 @@ public class MagicCubeScript : MonoBehaviour
         moduleId = moduleIdCounter++;
         magicCube = MagicCube.getMagicCube();
         magicConstant = (int) (3 * (Math.Pow(3, 3) + 1) / 2) + (MagicCube.rndOffset - 1) * 3;
-        Debug.Log(magicConstant);
         for (int i = 0; i < 3; i++)
         {
             UpArrows[i].OnInteract += ArrowPressed(i, 0);
@@ -51,7 +49,12 @@ public class MagicCubeScript : MonoBehaviour
         }
         ViewToggle.OnInteract += ViewTogglePressed();
         UpdateModule(false, false);
-        Log("Magic Cube: {0}{1}", Environment.NewLine, magicCube.Select(layer => layer.Select(face => face.Select(cell => cell.ToString()).Join(", ")).Join(Environment.NewLine)).Join(Environment.NewLine));
+        Debug.LogFormat(@"[Magic Cube #{0}]=svg[Magic Cube:]<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 110 110'><g fill='none' stroke='#000' stroke-linecap='round'><path d='M10 20h70v70H10ZM45 20v70M10 55h70' transform='translate(0 10)'/><path d='M20 10h70v70H20ZM55 10v70M20 45h70' transform='translate(0 10)'/><path d='M30 0h70v70H30ZM65 0v70M30 35h70M10 20 30 0M45 20 65 0M80 20l20-20M10 55l20-20M45 55l20-20M80 55l20-20M10 90l20-20M45 90l20-20M80 90l20-20' transform='translate(0 10)'/></g><circle cx='10' cy='30' r='5.625' fill='#ff9898'/><circle cx='10' cy='65' r='5.625' fill='#ff9898'/><circle cx='10' cy='100' r='5.625' fill='#ff9898'/><circle cx='20' cy='20' r='5.625' fill='#99ffa5'/><circle cx='20' cy='55' r='5.625' fill='#99ffa5'/><circle cx='20' cy='90' r='5.625' fill='#99ffa5'/><circle cx='30' cy='10' r='5.625' fill='#9ac5ff'/><circle cx='30' cy='45' r='5.625' fill='#9ac5ff'/><circle cx='30' cy='80' r='5.625' fill='#9ac5ff'/><circle cx='45' cy='30' r='5.625' fill='#ff9898'/><circle cx='45' cy='65' r='5.625' fill='#ff9898'/><circle cx='45' cy='100' r='5.625' fill='#ff9898'/><circle cx='55' cy='20' r='5.625' fill='#99ffa5'/><circle cx='55' cy='55' r='5.625' fill='#99ffa5'/><circle cx='55' cy='90' r='5.625' fill='#99ffa5'/><circle cx='65' cy='10' r='5.625' fill='#9ac5ff'/><circle cx='65' cy='45' r='5.625' fill='#9ac5ff'/><circle cx='65' cy='80' r='5.625' fill='#9ac5ff'/><circle cx='80' cy='30' r='5.625' fill='#ff9898'/><circle cx='80' cy='65' r='5.625' fill='#ff9898'/><circle cx='80' cy='100' r='5.625' fill='#ff9898'/><circle cx='90' cy='20' r='5.625' fill='#99ffa5'/><circle cx='90' cy='55' r='5.625' fill='#99ffa5'/><circle cx='90' cy='90' r='5.625' fill='#99ffa5'/><circle cx='100' cy='10' r='5.625' fill='#9ac5ff'/><circle cx='100' cy='45' r='5.625' fill='#9ac5ff'/><circle cx='100' cy='80' r='5.625' fill='#9ac5ff'/><g font-family='Trebuchet MS' font-size='8' text-anchor='middle'>{1}</g></svg>",
+            moduleId,
+            Enumerable.Range(0, 3).SelectMany(x =>
+                Enumerable.Range(0, 3).SelectMany(y =>
+                    Enumerable.Range(0, 3).Select(z => string.Format(@"<text x='{0}' y='{1}'>{2}</text>", 10 + 35 * x + 10 * z, 33 + 35 * y - 10 * z, magicCube[z][y][x])))).Join(""));
+
         StartCoroutine(ShuffleCube(25));
     }
 
@@ -278,10 +281,4 @@ public class MagicCubeScript : MonoBehaviour
         UpdateModule(true, true);
         moveActive = false;
     }
-
-    void Log(string msg, params object[] fmtArgs)
-    {
-        Debug.LogFormat(@"[Magic Cube #{0}] {1}", moduleId, string.Format(msg, fmtArgs));
-    }
-
 }

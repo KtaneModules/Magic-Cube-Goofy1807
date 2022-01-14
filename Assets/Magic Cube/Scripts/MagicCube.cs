@@ -1,13 +1,12 @@
 ﻿using System;
-using UnityEngine;
 
-public class MagicCube {
-
+public class MagicCube
+{
     public int rndOffset;
 
     public int[][][] getMagicCube()
     {
-        rndOffset = UnityEngine.Random.Range(1, 2);
+        rndOffset = UnityEngine.Random.Range(1, 10);
         int[][][] tempCube;
         var n = 3;
         tempCube = new int[n][][];
@@ -18,47 +17,24 @@ public class MagicCube {
                 tempCube[i][j] = new int[n];
         }
 
-        int l, r, c;
-        l = 0;
-        r = n / 2;
-        c = n / 2;
-
-        int last = (int) Math.Pow(n, 3);
+        int l = 0, r = n / 2, c = n / 2;
+        int last = n * n * n;
         for (int i = 0; i < last; i++)
         {
             tempCube[l][r][c] = i + rndOffset;
-            l--;
-            l = normalize(n, l);
-            c--;
-            c = normalize(n, c);
+            l = (l + n - 1) % n;
+            c = (c + n - 1) % n;
             if (tempCube[l][r][c] != 0)
             {
-                r--;
-                r = normalize(n, r);
-                c++;
-                c = normalize(n, c);
+                r = (r + n - 1) % n;
+                c = (c + 1) % n;
                 if (tempCube[l][r][c] != 0)
                 {
-                    r++;
-                    r = normalize(n, r);
-                    l += 2;
-                    l = normalize(n, l);
+                    r = (r + 1) % n;
+                    l = (l + 2) % n;
                 }
             }
         }
         return tempCube;
-    }
-
-    private int normalize(int n, int index)
-    {
-        while (index < 0)
-        {
-            index = index + n;
-        }
-        while (index > n - 1)
-        {
-            index = index - n;
-        }
-        return index;
     }
 }
