@@ -7,7 +7,7 @@ public class MagicCube {
 
     public int[][][] getMagicCube()
     {
-        rndOffset = UnityEngine.Random.Range(1, 10);
+        rndOffset = UnityEngine.Random.Range(1, 2);
         int[][][] tempCube;
         var n = 3;
         tempCube = new int[n][][];

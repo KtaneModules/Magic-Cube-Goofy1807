@@ -61,6 +61,7 @@ public class MagicCubeScript : MonoBehaviour
         {
             if (moduleSolved || moveActive)
                 return false;
+            Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, transform);
             curLayer = (curLayer + 1) % 9;
             UpdateModule(false, false);
             return false;
@@ -73,6 +74,7 @@ public class MagicCubeScript : MonoBehaviour
         {
             if (moduleSolved || moveActive)
                 return false;
+            Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, transform);
             StartCoroutine(MoveValues(btn, ix, false));
             return false;
         };
