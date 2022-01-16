@@ -49,7 +49,7 @@ public class MagicCubeScript : MonoBehaviour
         }
         ViewToggle.OnInteract += ViewTogglePressed();
         UpdateModule(false, false);
-        Debug.LogFormat(@"[Magic Cube #{0}]=svg[Magic Cube:]<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 110 110'><g fill='none' stroke='#000' stroke-linecap='round'><path d='M10 20h70v70H10ZM45 20v70M10 55h70' transform='translate(0 10)'/><path d='M20 10h70v70H20ZM55 10v70M20 45h70' transform='translate(0 10)'/><path d='M30 0h70v70H30ZM65 0v70M30 35h70M10 20 30 0M45 20 65 0M80 20l20-20M10 55l20-20M45 55l20-20M80 55l20-20M10 90l20-20M45 90l20-20M80 90l20-20' transform='translate(0 10)'/></g><circle cx='10' cy='30' r='5.625' fill='#ff9898'/><circle cx='10' cy='65' r='5.625' fill='#ff9898'/><circle cx='10' cy='100' r='5.625' fill='#ff9898'/><circle cx='20' cy='20' r='5.625' fill='#99ffa5'/><circle cx='20' cy='55' r='5.625' fill='#99ffa5'/><circle cx='20' cy='90' r='5.625' fill='#99ffa5'/><circle cx='30' cy='10' r='5.625' fill='#9ac5ff'/><circle cx='30' cy='45' r='5.625' fill='#9ac5ff'/><circle cx='30' cy='80' r='5.625' fill='#9ac5ff'/><circle cx='45' cy='30' r='5.625' fill='#ff9898'/><circle cx='45' cy='65' r='5.625' fill='#ff9898'/><circle cx='45' cy='100' r='5.625' fill='#ff9898'/><circle cx='55' cy='20' r='5.625' fill='#99ffa5'/><circle cx='55' cy='55' r='5.625' fill='#99ffa5'/><circle cx='55' cy='90' r='5.625' fill='#99ffa5'/><circle cx='65' cy='10' r='5.625' fill='#9ac5ff'/><circle cx='65' cy='45' r='5.625' fill='#9ac5ff'/><circle cx='65' cy='80' r='5.625' fill='#9ac5ff'/><circle cx='80' cy='30' r='5.625' fill='#ff9898'/><circle cx='80' cy='65' r='5.625' fill='#ff9898'/><circle cx='80' cy='100' r='5.625' fill='#ff9898'/><circle cx='90' cy='20' r='5.625' fill='#99ffa5'/><circle cx='90' cy='55' r='5.625' fill='#99ffa5'/><circle cx='90' cy='90' r='5.625' fill='#99ffa5'/><circle cx='100' cy='10' r='5.625' fill='#9ac5ff'/><circle cx='100' cy='45' r='5.625' fill='#9ac5ff'/><circle cx='100' cy='80' r='5.625' fill='#9ac5ff'/><g font-family='Trebuchet MS' font-size='8' text-anchor='middle'>{1}</g></svg>",
+        Debug.LogFormat(@"[Magic Cube #{0}]=svg[Original Magic Cube:]<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 110 110'><g fill='none' stroke='#000' stroke-linecap='round'><path d='M10 20h70v70H10ZM45 20v70M10 55h70' transform='translate(0 10)'/><path d='M20 10h70v70H20ZM55 10v70M20 45h70' transform='translate(0 10)'/><path d='M30 0h70v70H30ZM65 0v70M30 35h70M10 20 30 0M45 20 65 0M80 20l20-20M10 55l20-20M45 55l20-20M80 55l20-20M10 90l20-20M45 90l20-20M80 90l20-20' transform='translate(0 10)'/></g><circle cx='10' cy='30' r='5.625' fill='#ff9898'/><circle cx='10' cy='65' r='5.625' fill='#ff9898'/><circle cx='10' cy='100' r='5.625' fill='#ff9898'/><circle cx='20' cy='20' r='5.625' fill='#99ffa5'/><circle cx='20' cy='55' r='5.625' fill='#99ffa5'/><circle cx='20' cy='90' r='5.625' fill='#99ffa5'/><circle cx='30' cy='10' r='5.625' fill='#9ac5ff'/><circle cx='30' cy='45' r='5.625' fill='#9ac5ff'/><circle cx='30' cy='80' r='5.625' fill='#9ac5ff'/><circle cx='45' cy='30' r='5.625' fill='#ff9898'/><circle cx='45' cy='65' r='5.625' fill='#ff9898'/><circle cx='45' cy='100' r='5.625' fill='#ff9898'/><circle cx='55' cy='20' r='5.625' fill='#99ffa5'/><circle cx='55' cy='55' r='5.625' fill='#99ffa5'/><circle cx='55' cy='90' r='5.625' fill='#99ffa5'/><circle cx='65' cy='10' r='5.625' fill='#9ac5ff'/><circle cx='65' cy='45' r='5.625' fill='#9ac5ff'/><circle cx='65' cy='80' r='5.625' fill='#9ac5ff'/><circle cx='80' cy='30' r='5.625' fill='#ff9898'/><circle cx='80' cy='65' r='5.625' fill='#ff9898'/><circle cx='80' cy='100' r='5.625' fill='#ff9898'/><circle cx='90' cy='20' r='5.625' fill='#99ffa5'/><circle cx='90' cy='55' r='5.625' fill='#99ffa5'/><circle cx='90' cy='90' r='5.625' fill='#99ffa5'/><circle cx='100' cy='10' r='5.625' fill='#9ac5ff'/><circle cx='100' cy='45' r='5.625' fill='#9ac5ff'/><circle cx='100' cy='80' r='5.625' fill='#9ac5ff'/><g font-family='Trebuchet MS' font-size='8' text-anchor='middle'>{1}</g></svg>",
             moduleId,
             Enumerable.Range(0, 3).SelectMany(x =>
                 Enumerable.Range(0, 3).SelectMany(y =>
@@ -160,6 +160,11 @@ public class MagicCubeScript : MonoBehaviour
         }
         curLayer = 0;
         UpdateModule(false, false);
+        Debug.LogFormat(@"[Magic Cube #{0}]=svg[Shuffled Magic Cube:]<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 110 110'><g fill='none' stroke='#000' stroke-linecap='round'><path d='M10 20h70v70H10ZM45 20v70M10 55h70' transform='translate(0 10)'/><path d='M20 10h70v70H20ZM55 10v70M20 45h70' transform='translate(0 10)'/><path d='M30 0h70v70H30ZM65 0v70M30 35h70M10 20 30 0M45 20 65 0M80 20l20-20M10 55l20-20M45 55l20-20M80 55l20-20M10 90l20-20M45 90l20-20M80 90l20-20' transform='translate(0 10)'/></g><circle cx='10' cy='30' r='5.625' fill='#ff9898'/><circle cx='10' cy='65' r='5.625' fill='#ff9898'/><circle cx='10' cy='100' r='5.625' fill='#ff9898'/><circle cx='20' cy='20' r='5.625' fill='#99ffa5'/><circle cx='20' cy='55' r='5.625' fill='#99ffa5'/><circle cx='20' cy='90' r='5.625' fill='#99ffa5'/><circle cx='30' cy='10' r='5.625' fill='#9ac5ff'/><circle cx='30' cy='45' r='5.625' fill='#9ac5ff'/><circle cx='30' cy='80' r='5.625' fill='#9ac5ff'/><circle cx='45' cy='30' r='5.625' fill='#ff9898'/><circle cx='45' cy='65' r='5.625' fill='#ff9898'/><circle cx='45' cy='100' r='5.625' fill='#ff9898'/><circle cx='55' cy='20' r='5.625' fill='#99ffa5'/><circle cx='55' cy='55' r='5.625' fill='#99ffa5'/><circle cx='55' cy='90' r='5.625' fill='#99ffa5'/><circle cx='65' cy='10' r='5.625' fill='#9ac5ff'/><circle cx='65' cy='45' r='5.625' fill='#9ac5ff'/><circle cx='65' cy='80' r='5.625' fill='#9ac5ff'/><circle cx='80' cy='30' r='5.625' fill='#ff9898'/><circle cx='80' cy='65' r='5.625' fill='#ff9898'/><circle cx='80' cy='100' r='5.625' fill='#ff9898'/><circle cx='90' cy='20' r='5.625' fill='#99ffa5'/><circle cx='90' cy='55' r='5.625' fill='#99ffa5'/><circle cx='90' cy='90' r='5.625' fill='#99ffa5'/><circle cx='100' cy='10' r='5.625' fill='#9ac5ff'/><circle cx='100' cy='45' r='5.625' fill='#9ac5ff'/><circle cx='100' cy='80' r='5.625' fill='#9ac5ff'/><g font-family='Trebuchet MS' font-size='8' text-anchor='middle'>{1}</g></svg>",
+    moduleId,
+    Enumerable.Range(0, 3).SelectMany(x =>
+        Enumerable.Range(0, 3).SelectMany(y =>
+            Enumerable.Range(0, 3).Select(z => string.Format(@"<text x='{0}' y='{1}'>{2}</text>", 10 + 35 * x + 10 * z, 33 + 35 * y - 10 * z, magicCube[z][y][x])))).Join(""));
     }
 
     private IEnumerator MoveValues(int btn, int from, bool fast)
@@ -278,7 +283,86 @@ public class MagicCubeScript : MonoBehaviour
 
                 break;
         }
-        UpdateModule(true, true);
+        UpdateModule(true, !fast);
         moveActive = false;
     }
+#pragma warning disable 0414
+    readonly string TwitchHelpMessage = "!{0} 3ud, +, 3ud, ++, 2lr [press column 3 up, then column 3 down, then switch layers once, then column 3 up, then column 3 down, then switch layers twice, then row 2 left, then row 2 right]";
+#pragma warning restore 0414
+
+    IEnumerator ProcessTwitchCommand(string command)
+    {
+        Match m;
+        if (moduleSolved)
+        {
+            yield return "sendtochaterror The module is already solved.";
+            yield break;
+        }
+        else if ((m = Regex.Match(command.ToLowerInvariant(), @"^\s*([123udlr,+ ]+\s*)\s*")).Success)
+        {
+            var match = m.Groups[1].Value.Split(new[] { ',', ';', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+            for (int i = 0; i < match.Length; i++)
+            {
+                if (match[i].Length < 2 && match[i][0] != '+')
+                {
+                    yield return "sendtochaterror Incorrect length.";
+                    yield break;
+                }
+                for (int j = 1; j < match[i].Length; j++)
+                {
+                    if (match[i][0] != '+')
+                    {
+                        if (!new char[] { 'u', 'd', 'l', 'r' }.Contains(match[i][j]))
+                        {
+                            yield return "sendtochaterror Incorrect input.";
+                            yield break;
+                        }
+                    }
+                    else
+                    {
+                        if (match[i][j] != '+')
+                        {
+                            yield return "sendtochaterror Incorrect input.";
+                            yield break;
+                        }
+                    }
+                }
+            }
+            yield return null;
+            for (int i = 0; i < match.Length; i++)
+            {
+                if (match[i][0] != '+')
+                {
+                    var cr = match[i][0] - '0' - 1;
+                    for (int j = 1; j < match[i].Length; j++)
+                        yield return StartCoroutine(MoveValues(cr, match[i][j] == 'u' ? 0 : match[i][j] == 'd' ? 1 : match[i][j] == 'l' ? 2 : 3, false));
+                }
+                else
+                {
+                    for (int j = 0; j < match[i].Length; j++)
+                    {
+                        curLayer = (curLayer + 1) % 9;
+                        UpdateModule(false, false);
+                        yield return new WaitForSeconds(.1f);
+                    }
+                }
+            }
+            yield break;
+        }
+
+        else
+        {
+            yield return "sendtochaterror Invalid command.";
+            yield break;
+        }
+    }
+
+    IEnumerator TwitchHandleForcedSolve()
+    {
+        Debug.LogFormat(@"[Magic Cube #{0}] Module was force-solved by TP.", moduleId);
+        Module.HandlePass();
+        yield return null;
+    }
+
 }
